@@ -2,6 +2,8 @@ package com.example.imagerecognition;
 
 import com.example.customvision.CustomVisionService;
 import com.example.customvision.utils.ThrowableRunnable;
+import com.example.imagerecognition.model.LearningRunner;
+import com.example.imagerecognition.model.PredictionRunner;
 
 import java.util.HashMap;
 import java.util.Map;

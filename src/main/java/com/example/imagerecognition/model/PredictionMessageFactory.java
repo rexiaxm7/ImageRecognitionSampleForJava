@@ -1,4 +1,4 @@
-package com.example.imagerecognition;
+package com.example.imagerecognition.model;
 
 import com.example.customvision.dto.Prediction;
 
