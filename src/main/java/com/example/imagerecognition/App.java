@@ -10,11 +10,11 @@ import java.util.Scanner;
 public class App {
 
     // Replace your projectId
-    private static final String projectId = "5dc0dd8f-ed53-4f83-903a-646a2a910142";
+    private static final String projectId = "";
     // Replace your training key.
-    private static final String trainingKey = "a7af806f421c472485e1402f003e7363";
+    private static final String trainingKey = "";
     // Replace your prediction key.
-    private static final String predictionKey = "6af793ccad9748b980f06840fad79e57";
+    private static final String predictionKey = "";
 
     public static void main(String[] args) throws Exception {
 
