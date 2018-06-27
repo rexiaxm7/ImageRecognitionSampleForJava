@@ -15,6 +15,11 @@ public class App {
 
     public static void main(String[] args) throws Exception {
 
+        if(projectId.isEmpty() || trainingKey.isEmpty() || predictionKey.isEmpty()){
+            System.out.println("APIのIdまたはKeyの設定がありません。");
+            return;
+        }
+
         CustomVisionService service = new CustomVisionService(projectId, trainingKey, predictionKey);
         FunctionSelector functionSelector = new FunctionSelector(service);
 
