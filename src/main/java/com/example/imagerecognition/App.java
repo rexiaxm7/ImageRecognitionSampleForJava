@@ -4,6 +4,7 @@ import com.example.customvision.CustomVisionService;
 import com.example.customvision.utils.ThrowableRunnable;
 import com.example.imagerecognition.model.FunctionSelector;
 
+
 public class App {
 
     // Replace your projectId

@@ -2,6 +2,9 @@ package com.example.imagerecognition.model;
 
 import com.example.customvision.CustomVisionService;
 import com.example.customvision.utils.ThrowableRunnable;
+import com.example.imagerecognition.model.classifying.ClassifyingRunner;
+import com.example.imagerecognition.model.learning.LearningRunner;
+import com.example.imagerecognition.model.prediction.PredictionRunner;
 
 import java.text.MessageFormat;
 import java.util.HashMap;
@@ -16,7 +19,8 @@ public class FunctionSelector {
     public FunctionSelector(CustomVisionService service) {
 
         functionMap.put("1",  new Function("予測", new PredictionRunner(service)));
-        functionMap.put("2", new Function("学習", new LearningRunner()));
+        functionMap.put("2", new Function("学習", new LearningRunner(service)));
+        functionMap.put("3", new Function("分類", new ClassifyingRunner(service)));
     }
 
     public ThrowableRunnable select() {

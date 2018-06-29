@@ -1,4 +1,6 @@
-package com.example.imagerecognition.model;
+package com.example.imagerecognition.model.prediction;
+
+import com.example.imagerecognition.model.utils.FileExtensionChecker;
 
 import java.nio.file.*;
 import java.util.Scanner;
@@ -10,7 +12,6 @@ public class ImageFilePathInputGetter {
 
     public static String get() {
 
-        PathMatcher pathMatcher = FileSystems.getDefault().getPathMatcher("glob:**.{jpg,jpeg,png,bmp}");
         while (true) {
             System.out.println("画像のファイルパスを入力してください。");
             Scanner scan = new Scanner(System.in);
@@ -20,7 +21,7 @@ public class ImageFilePathInputGetter {
 
             try {
                 Path path = Paths.get(imageFilePath);
-                if (Files.exists(path) && pathMatcher.matches(path)) return imageFilePath;
+                if (Files.exists(path) && FileExtensionChecker.isImageFileExtension(path)) return imageFilePath;
             } catch (InvalidPathException e) {
                 // 例外が発生しても何も処理しない
             }

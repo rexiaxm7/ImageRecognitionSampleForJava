@@ -1,4 +1,4 @@
-package com.example.imagerecognition.model;
+package com.example.imagerecognition.model.prediction;
 
 import java.util.Scanner;
 

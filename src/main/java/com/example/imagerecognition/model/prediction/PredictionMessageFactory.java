@@ -1,10 +1,10 @@
-package com.example.imagerecognition.model;
+package com.example.imagerecognition.model.prediction;
 
 import com.example.customvision.dto.Prediction;
 
 import java.text.MessageFormat;
 
-public class PredictionMessageFactory {
+class PredictionMessageFactory {
 
     private static final String MESSAGE_ALMOST_PREDICTION = "この画像はきっと{0}ですね！({1})";
     private static final String MESSAGE_PROBABLY_PREDICTION = "この画像は{0}でしょうか？({1})";

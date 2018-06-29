@@ -1,4 +1,4 @@
-package com.example.imagerecognition.model;
+package com.example.imagerecognition.model.prediction;
 
 import com.example.customvision.CustomVisionService;
 import com.example.customvision.dto.ImagePredictedResult;
@@ -6,6 +6,7 @@ import com.example.customvision.dto.Prediction;
 import com.example.customvision.dto.Tag;
 import com.example.customvision.utils.ExceptionUtils;
 import com.example.customvision.utils.ThrowableRunnable;
+import com.example.imagerecognition.model.utils.HighestProbabilityPredctionGetter;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -30,7 +31,7 @@ public class PredictionRunner implements ThrowableRunnable {
         ImagePredictedResult imagePredictedResult = service.predictImage(imageFilePath);
 
         // もっとも確率の高い予測を抽出
-        Optional<Prediction> optionalPrediction = getPredictionWithHighestProbability(imagePredictedResult);
+        Optional<Prediction> optionalPrediction = HighestProbabilityPredctionGetter.get(imagePredictedResult);
 
         // 予測結果がなければ、処理に失敗してるので中断
         if (!optionalPrediction.isPresent()) {
@@ -74,13 +75,6 @@ public class PredictionRunner implements ThrowableRunnable {
     private Optional<Tag> getTagWithSameName(List<Tag> tagList, String tagName) {
         return tagList.stream()
                 .filter(tag -> tag.getName().equals(tagName))
-                .findFirst();
-    }
-
-    private static Optional<Prediction> getPredictionWithHighestProbability(ImagePredictedResult imagePredictedResult) {
-        return imagePredictedResult.getPredictions()
-                .stream()
-                .sorted(Comparator.comparing(Prediction::getProbability).reversed())
                 .findFirst();
     }
 
