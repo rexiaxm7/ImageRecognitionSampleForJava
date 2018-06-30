@@ -4,7 +4,7 @@ import com.example.customvision.CustomVisionService;
 import com.example.customvision.dto.ImagePredictedResult;
 import com.example.customvision.dto.Prediction;
 import com.example.customvision.utils.ThrowableRunnable;
-import com.example.imagerecognition.model.utils.HighestProbabilityPredctionGetter;
+import com.example.imagerecognition.model.utils.HighestProbabilityPredictionGetter;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -31,7 +31,7 @@ public class ClassifyingRunner implements ThrowableRunnable {
 
         for (Path path: paths) {
             ImagePredictedResult imagePredictedResult = service.predictImage(path.toString());
-            Optional<Prediction> optionalPrediction = HighestProbabilityPredctionGetter.get(imagePredictedResult);
+            Optional<Prediction> optionalPrediction = HighestProbabilityPredictionGetter.get(imagePredictedResult);
             if(!optionalPrediction.isPresent()){
                 System.out.println("予測に失敗しました。");
                 return;

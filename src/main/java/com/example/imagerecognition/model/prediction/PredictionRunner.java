@@ -6,7 +6,7 @@ import com.example.customvision.dto.Prediction;
 import com.example.customvision.dto.Tag;
 import com.example.customvision.utils.ExceptionUtils;
 import com.example.customvision.utils.ThrowableRunnable;
-import com.example.imagerecognition.model.utils.HighestProbabilityPredctionGetter;
+import com.example.imagerecognition.model.utils.HighestProbabilityPredictionGetter;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -31,7 +31,7 @@ public class PredictionRunner implements ThrowableRunnable {
         ImagePredictedResult imagePredictedResult = service.predictImage(imageFilePath);
 
         // もっとも確率の高い予測を抽出
-        Optional<Prediction> optionalPrediction = HighestProbabilityPredctionGetter.get(imagePredictedResult);
+        Optional<Prediction> optionalPrediction = HighestProbabilityPredictionGetter.get(imagePredictedResult);
 
         // 予測結果がなければ、処理に失敗してるので中断
         if (!optionalPrediction.isPresent()) {

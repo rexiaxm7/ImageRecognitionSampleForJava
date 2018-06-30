@@ -1,18 +1,11 @@
 package com.example.customvision;
 
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.text.MessageFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import com.example.customvision.dto.*;
 import com.example.customvision.model.ByteArrayFactory;
 import com.example.customvision.model.HttpGetFactory;
 import com.example.customvision.model.HttpPostFactory;
-import com.sun.javafx.scene.control.skin.VirtualFlow;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -24,8 +17,13 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.text.MessageFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class CustomVisionService implements ICustomVisionService {
 
@@ -38,7 +36,6 @@ public class CustomVisionService implements ICustomVisionService {
     private final String projectId;
     private final String trainingKey;
     private final String predictionKey;
-    private String json;
 
     public CustomVisionService(String projectId, String trainingKey, String predictionKey) {
         this.projectId = projectId;
@@ -100,7 +97,7 @@ public class CustomVisionService implements ICustomVisionService {
 
 
     public ImageCreatedResult createImagesFromData(String imageFilePath) throws IOException, URISyntaxException {
-        return createImagesFromData(imageFilePath, new ArrayList<String>());
+        return createImagesFromData(imageFilePath, new ArrayList<>());
     }
 
     public ImageCreatedResult createImagesFromData(String imageFilePath, List<String> tagIdList) throws URISyntaxException, IOException {
@@ -113,8 +110,8 @@ public class CustomVisionService implements ICustomVisionService {
         request.setHeader("Content-Type", "application/octet-stream");
         request.setHeader("Training-Key", trainingKey);
 
-        byte[] imagebyteArray = ByteArrayFactory.createFromFile(imageFilePath);
-        request.setEntity(new ByteArrayEntity(imagebyteArray));
+        byte[] imageByteArray = ByteArrayFactory.createFromFile(imageFilePath);
+        request.setEntity(new ByteArrayEntity(imageByteArray));
 
         HttpClient httpclient = HttpClients.createDefault();
         HttpResponse response = httpclient.execute(request);
@@ -143,8 +140,6 @@ public class CustomVisionService implements ICustomVisionService {
     public ImagePredictedResult predictImage(String imageFilePath) throws URISyntaxException, IOException {
 
         String url = MessageFormat.format(URL_PREDICT_IMAGE_API, projectId);
-        // TODO: iterationIdを固定ではなくす
-        //List<NameValuePair> paramList = Arrays.asList(new BasicNameValuePair("iterationId", "6e777e23-4ca5-4f79-be62-0b2ac62c027f"));
         HttpPost request = HttpPostFactory.create(url);
         request.setHeader("Content-Type", "application/octet-stream");
         request.setHeader("Prediction-Key", predictionKey);
@@ -156,7 +151,7 @@ public class CustomVisionService implements ICustomVisionService {
         HttpResponse response = httpclient.execute(request);
         HttpEntity entity = response.getEntity();
         Gson gson = new Gson();
-        json = EntityUtils.toString(entity);
+        String json = EntityUtils.toString(entity);
         return gson.fromJson(json, ImagePredictedResult.class);
     }
 

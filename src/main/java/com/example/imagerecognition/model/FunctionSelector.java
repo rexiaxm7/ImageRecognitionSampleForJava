@@ -45,7 +45,7 @@ public class FunctionSelector {
             }
 
             System.out.println("無効な入力値です。もう一度入力してください。");
-            System.out.println("");
+            System.out.println();
         }
     }
 
@@ -60,11 +60,11 @@ public class FunctionSelector {
             this.runner = runner;
         }
 
-        public String getName() {
+        String getName() {
             return name;
         }
 
-        public ThrowableRunnable getRunner() {
+        ThrowableRunnable getRunner() {
             return runner;
         }
     }

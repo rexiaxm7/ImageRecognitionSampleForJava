@@ -6,7 +6,7 @@ import com.example.customvision.dto.Prediction;
 import java.util.Comparator;
 import java.util.Optional;
 
-public class HighestProbabilityPredctionGetter {
+public class HighestProbabilityPredictionGetter {
     public static Optional<Prediction> get(ImagePredictedResult imagePredictedResult) {
         return imagePredictedResult.getPredictions()
                 .stream()

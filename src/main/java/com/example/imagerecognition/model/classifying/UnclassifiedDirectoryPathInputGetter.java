@@ -2,9 +2,11 @@ package com.example.imagerecognition.model.classifying;
 
 import com.example.imagerecognition.model.utils.FileExtensionChecker;
 
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.*;
+import java.nio.file.Files;
+import java.nio.file.InvalidPathException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
