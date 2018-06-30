@@ -14,7 +14,7 @@ class PredictionMessageFactory {
     private PredictionMessageFactory() {
     }
 
-    public static String create(Prediction prediction) {
+    static String create(Prediction prediction) {
         Double probability = prediction.getProbability();
         String tagName = prediction.getTagName();
         String predictionMessage = getPredictionMessage(probability);

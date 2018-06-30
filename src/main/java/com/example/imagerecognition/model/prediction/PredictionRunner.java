@@ -68,7 +68,7 @@ public class PredictionRunner implements ThrowableRunnable {
 
         // 同じ名前のTagがあれば、そのTag。なければ新しいTagを作って、予測した画像に対してTagを貼って登録を行う。
         Tag tag = optionalTag.orElseGet(ExceptionUtils.toUnchecked(() -> service.createTag(tagName)));
-        service.createImagesFromData(imageFilePath, Arrays.asList(tag.getId()));
+        service.createImagesFromData(imageFilePath, Collections.singletonList(tag.getId()));
         System.out.println("登録しました。次回学習時に適用されます。");
 
     }

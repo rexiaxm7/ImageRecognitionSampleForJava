@@ -1,8 +1,6 @@
 package com.example.imagerecognition.model.learning;
 
 
-import com.example.imagerecognition.model.utils.FileExtensionChecker;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.InvalidPathException;

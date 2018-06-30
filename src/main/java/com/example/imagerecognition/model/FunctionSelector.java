@@ -19,7 +19,7 @@ public class FunctionSelector {
     public FunctionSelector(CustomVisionService service) {
 
         functionMap.put("1",  new Function("予測", new PredictionRunner(service)));
-        functionMap.put("2", new Function("学習", new LearningRunner(service)));
+        functionMap.put("2", new Function("学習", new LearningRunner()));
         functionMap.put("3", new Function("分類", new ClassifyingRunner(service)));
     }
 
