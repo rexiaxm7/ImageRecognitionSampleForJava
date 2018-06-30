@@ -43,6 +43,7 @@ public class CustomVisionService implements ICustomVisionService {
         this.predictionKey = predictionKey;
     }
 
+    @Override
     public List<Tag> getTags() throws URISyntaxException, IOException {
 
         String url = MessageFormat.format(URL_GET_TAGS_API, projectId);
@@ -63,6 +64,7 @@ public class CustomVisionService implements ICustomVisionService {
         return new ArrayList<>();
     }
 
+    @Override
     public List<Iteration> getIterations() throws URISyntaxException, IOException {
         String url = MessageFormat.format(URL_GET_ITERATIONS_API, projectId);
         HttpGet request = HttpGetFactory.createHttpGet(url);
@@ -81,6 +83,7 @@ public class CustomVisionService implements ICustomVisionService {
         return new ArrayList<>();
     }
 
+    @Override
     public Tag createTag(String tagName) throws URISyntaxException, IOException {
         String url = MessageFormat.format(URL_CREATE_TAG_API, projectId);
         HttpPost request = HttpPostFactory.create(url, Arrays.asList(new BasicNameValuePair("name", tagName)));
@@ -96,10 +99,12 @@ public class CustomVisionService implements ICustomVisionService {
     }
 
 
+    @Override
     public ImageCreatedResult createImagesFromData(String imageFilePath) throws IOException, URISyntaxException {
         return createImagesFromData(imageFilePath, new ArrayList<>());
     }
 
+    @Override
     public ImageCreatedResult createImagesFromData(String imageFilePath, List<String> tagIdList) throws URISyntaxException, IOException {
         String url = MessageFormat.format(
                 "https://southcentralus.api.cognitive.microsoft.com/customvision/v2.0/Training/projects/{0}/images",
@@ -122,6 +127,7 @@ public class CustomVisionService implements ICustomVisionService {
         return gson.fromJson(json, ImageCreatedResult.class);
     }
 
+    @Override
     public ProjectTrainedResult trainProject() throws URISyntaxException, IOException {
         String url = MessageFormat.format(URL_TRAIN_PROJECT_API, projectId);
 
@@ -137,6 +143,7 @@ public class CustomVisionService implements ICustomVisionService {
         return gson.fromJson(json, ProjectTrainedResult.class);
     }
 
+    @Override
     public ImagePredictedResult predictImage(String imageFilePath) throws URISyntaxException, IOException {
 
         String url = MessageFormat.format(URL_PREDICT_IMAGE_API, projectId);

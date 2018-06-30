@@ -1,6 +1,7 @@
 package com.example.imagerecognition.model.classifying;
 
 import com.example.customvision.CustomVisionService;
+import com.example.customvision.ICustomVisionService;
 import com.example.customvision.dto.ImagePredictedResult;
 import com.example.customvision.dto.Prediction;
 import com.example.customvision.utils.ThrowableRunnable;
@@ -13,7 +14,7 @@ import java.util.Optional;
 
 public class ClassifyingRunner implements ThrowableRunnable {
 
-    private final CustomVisionService service;
+    private final ICustomVisionService service;
 
     public ClassifyingRunner(CustomVisionService service) {
         this.service = service;
